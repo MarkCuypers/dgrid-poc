@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Dgrid POC</title>
+
+  <link rel="stylesheet" href="lib/dojo/dijit/themes/claro/claro.css" />
+  <style>
+    html, body {
+      font-family: "Helvetica Neue Light", "Lucida Grande", "Calibri", "Arial", sans-serif;
+    }
+  </style>
+
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+  <meta name="format-detection" content="telephone=yes">
+  <meta name="viewport" content="user-scalable=no"/>
+
+  <script src="app/config/dojoConfig.js"></script>
+  <script src="lib/dojo/dojo/dojo.js"></script>
+  <script>
+    require(["dojo/parser", "dojo/promise/all", "dojo/errors/CancelError", "dojo/io-query", "dojo/hash", "dojo/_base/lang",
+          "dijit/registry", "app-viewmodel/Recipe", "app-widget/recipe/RecipeListWidget",
+
+          "dojox/mobile/compat", "dojox/mobile/FixedSplitter", "dojox/mobile/Container",
+
+          "dojo/domReady!"],
+        function (parser, all, CancelError, ioQuery, hash, lang, registry, Recipe) {
+          var parsed = parser.parse();
+          parsed.otherwise(
+              function (err) {
+                console.error("Parsing: ", err);
+              }
+          );
+          var allCoupled = parsed.then(
+              function () {
+                var _recipeListWidget = registry.byId("_recipeListWidget");
+                var _addRecipeWidget = registry.byId("_addRecipeWidget");
+                _addRecipeWidget.watch("recipeToSave", function(/*String*/ prop, /*Recipe*/ oldValue, /*Recipe*/ newValue) {
+                  _recipeListWidget.addRecipe(newValue);
+                });
+
+                console.info("Parsing done");
+              }
+          );
+          allCoupled.otherwise(
+              function (err) {
+                console.error("Couplings failed; ", err);
+              }
+          );
+        }
+    );
+  </script>
+</head>
+<body class="claro">
+
+<h1>POC</h1>
+
+<div data-dojo-type="app-widget/recipe/RecipeListWidget" id="_recipeListWidget"></div>
+<div data-dojo-type="app-widget/recipe/AddRecipeWidget" id="_addRecipeWidget"></div>
+
+</body>
+</html>

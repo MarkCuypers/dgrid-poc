@@ -1,0 +1,18 @@
+<div>
+  <script type="dojo/require">at: "dojox/mvc/at", lang: "dojo/_base/lang"</script>
+  <fieldset>
+    <legend>Add Recipe</legend>
+    <ul>
+      <li>
+        <label>Name</label>
+        <input data-dojo-type="dijit/form/TextBox" data-dojo-props="value: at('rel:', 'name').direction(at.both)"/>
+      </li>
+      <li>
+        <label>Category</label>
+        <input data-dojo-attach-point="_categoryComboBox" data-dojo-type="dijit/form/ComboBox"
+               data-dojo-props="placeHolder: 'Select a category'" />
+      </li>
+    </ul>
+    <button data-dojo-type="dijit/form/Button" type="button" data-dojo-props="label: 'Save', onClick: lang.hitch(this, this._save)"></button>
+  </fieldset>
+</div>

@@ -1,0 +1,16 @@
+.addRecipeWidget fieldset ul li {
+    list-style-type: none;
+    height: 30px;
+    line-height: 30px;
+}
+
+.addRecipeWidget fieldset ul li label {
+    width: 100px;
+    float: left;
+    text-align: right;
+    margin-right: 20px;
+}
+
+.addRecipeWidget fieldset ul li label:after {
+    content: ": ";
+}
