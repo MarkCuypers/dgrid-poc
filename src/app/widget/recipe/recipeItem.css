@@ -11,6 +11,7 @@
     margin: 10px;
     padding: 10px;
     background: #FFF;
+    opacity: 0;
 }
 
 .recipeItem .name {

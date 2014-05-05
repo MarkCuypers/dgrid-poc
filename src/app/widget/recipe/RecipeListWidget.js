@@ -28,6 +28,7 @@ define(["dojo/_base/declare", "dojo/_base/lang", "dojo/on", "dojo/dom-construct"
           recipe: recipe,
           onDelete: lang.hitch(this, "_deleteRecipe", recipe)
         });
+        item.startup();
         return item.domNode;
       },
 
