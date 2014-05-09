@@ -19,17 +19,26 @@ define(["dojo/_base/declare", "dojo/_base/lang", "dojo/on", "dojo/dom-construct"
         var self = this;
         var grid = new OnDemandList({
           store: self.recipes,
-          renderRow: lang.hitch(self, self.renderRecipe)
+          renderRow: lang.hitch(self, self.renderRecipe),
+          removeRow: lang.hitch(self, self.removeRecipe)
         }, self._recipeListNode);
       },
 
       renderRecipe: function (/*Recipe*/ recipe) {
-        var item = new RecipeItem({
+        var recipeItem = new RecipeItem({
           recipe: recipe,
           onDelete: lang.hitch(this, "_deleteRecipe", recipe)
         });
-        item.startup();
-        return item.domNode;
+        recipeItem.startup();
+        var node = recipeItem.domNode;
+        node.RECIPE_OBJECT = recipeItem;
+        return node;
+      },
+
+      removeRecipe: function(recipeNode) {
+        var recipeItem = recipeNode.RECIPE_OBJECT;
+        recipeItem.destroyRecursive();
+        recipeItem = null;
       },
 
       setRecipes: function (/*Array*/ recipesArray) {
