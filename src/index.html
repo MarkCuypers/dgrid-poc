@@ -5,11 +5,7 @@
   <title>Dgrid POC</title>
 
   <link rel="stylesheet" href="lib/dojo/dijit/themes/claro/claro.css" />
-  <style>
-    html, body {
-      font-family: "Helvetica Neue Light", "Lucida Grande", "Calibri", "Arial", sans-serif;
-    }
-  </style>
+  <link rel="stylesheet" href="app/css/appStyle.css" />
 
   <meta name="apple-mobile-web-app-capable" content="yes"/>
   <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
@@ -54,7 +50,24 @@
 </head>
 <body class="claro">
 
-<h1>POC</h1>
+<div id="header">
+    <div id="appLogo"></div>
+    <div class="headerBar">
+        <div class="userInfo">
+            <span class="logout">Logout</span>
+            <span class="userName">Mark Cuypers</span>
+        </div>
+        <div class="title">Recipes</div>
+        <div class="subtitle">by MArKiTo</div>
+    </div>
+</div>
+<div id="menu">
+    <ul>
+        <li>bla</li>
+        <li>bla</li>
+        <li>bla</li>
+    </ul>
+</div>
 
 <div data-dojo-type="app-widget/recipe/RecipeListWidget" id="_recipeListWidget"></div>
 <div data-dojo-type="app-widget/recipe/AddRecipeWidget" id="_addRecipeWidget"></div>
